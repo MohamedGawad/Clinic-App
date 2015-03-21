@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 21, 2015 7:24:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+	<class name="com.se.mapping.Visit" table="visit" catalog="clinicdb">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="patient" class="com.se.mapping.Patient"
+			fetch="select">
+			<column name="PatientId" not-null="true" />
+		</many-to-one>
+		<property name="complaint" type="string">
+			<column name="Complaint" length="65535" />
+		</property>
+		<property name="hpi" type="string">
+			<column name="HPI" length="65535" />
+		</property>
+		<property name="ph" type="string">
+			<column name="PH" length="65535" />
+		</property>
+		<property name="ears" type="string">
+			<column name="Ears" length="65535" />
+		</property>
+		<property name="nose" type="string">
+			<column name="Nose" length="65535" />
+		</property>
+		<property name="pharynx" type="string">
+			<column name="Pharynx" length="65535" />
+		</property>
+		<property name="larynx" type="string">
+			<column name="Larynx" length="65535" />
+		</property>
+		<property name="neckOtherareas" type="string">
+			<column name="Neck_Otherareas" length="65535" />
+		</property>
+		<property name="otherData" type="string">
+			<column name="OtherData" length="65535" />
+		</property>
+		<property name="investigationDone" type="string">
+			<column name="Investigation_Done" />
+		</property>
+		<property name="investigationRequest" type="string">
+			<column name="Investigation_Request" />
+		</property>
+		<property name="treatment" type="string">
+			<column name="Treatment" />
+		</property>
+		<set name="followups" table="followup" inverse="true" lazy="true"
+			fetch="select">
+			<key>
+				<column name="VisitID" not-null="true" />
+			</key>
+			<one-to-many class="com.se.mapping.Followup" />
+		</set>
+		<property name="visitDate" type="date">
+			<column name="VisitDate" length="0" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,254 @@
+<ui:composition template="/pages/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<ui:define name="content">
+		<div>
+
+			<h:outputLabel styleClass="label"
+				value=" Welcome : #{userBean.user.userName}">
+			</h:outputLabel>
+			<h:form>
+				<div align="left">
+
+					<table class="spaceUnder">
+						<tr>
+
+							<td><h:outputLabel styleClass="label"> PatientName: </h:outputLabel></td>
+							<td><h:inputText pt:placeholder="Patient Name"
+									aria-describedby="basic-addon1" styleClass="form-control"
+									id="Pname" required="true" value="#{PBean.patient.name}"
+									requiredMessage="#{msgBean.getRequired()}">
+									<f:ajax event="blur" render="Pname_message" />
+								</h:inputText></td>
+							<td><h:message id="pname_message" for="Pname"
+									infoClass="info" errorClass="error" /></td>
+						</tr>
+
+						<tr>
+
+							<td><h:outputLabel styleClass="label">
+							Age:</h:outputLabel></td>
+							<td><h:inputText pt:placeholder="Age"
+									styleClass="form-control" id="age" required="true"
+									value="#{PBean.patient.age}"
+									requiredMessage="#{msgBean.getRequired()}"
+									style="width: 57px; ">
+									<f:ajax event="blur" render="age_message" />
+								</h:inputText></td>
+							<td><h:message id="agemessage" for="age" infoClass="info"
+									errorClass="error" /></td>
+						</tr>
+						<tr>
+
+							<td><h:outputLabel styleClass="label">
+							Sex:</h:outputLabel></td>
+							<td><h:selectOneRadio id="sex" value="#{PBean.patient.sex}"
+									requiredMessage="#{msgBean.getRequired()}">
+									<f:selectItem id="male" itemLabel="Male" itemValue="1" />
+									<f:selectItem id="female" itemLabel="Female" itemValue="2" />
+									<f:ajax event="blur" render="sex_message" />
+								</h:selectOneRadio></td>
+							<td><h:message id="sex_message" for="sex" infoClass="info"
+									errorClass="error" /></td>
+						</tr>
+						<tr>
+
+							<td><h:outputLabel styleClass="label">
+							Address:</h:outputLabel></td>
+							<td><h:inputTextarea pt:placeholder="Address...."
+									styleClass="form-control" value="#{PBean.patient.address}"
+									id="address" required="true"
+									requiredMessage="#{msgBean.getRequired()}">
+									<f:ajax event="blur" render="address_message" />
+								</h:inputTextarea></td>
+							<td><h:message id="address_message" for="address"
+									infoClass="info" errorClass="error" /></td>
+						</tr>
+						<tr>
+
+							<td><h:outputLabel styleClass="label">
+							PhoneNumber:</h:outputLabel></td>
+							<td><h:inputText pt:placeholder="Phone"
+									styleClass="form-control" id="phonenum" required="true"
+									value="#{PBean.patient.phoneNo}"
+									requiredMessage="#{msgBean.getRequired()}">
+									<f:ajax event="blur" render="phonenum_message" />
+								</h:inputText></td>
+							<td><h:message id="phonenum_message" for="phonenum"
+									infoClass="info" errorClass="error" /></td>
+
+
+						</tr>
+					</table>
+				</div>
+			</h:form>
+		</div>
+		<p:separator style="width:90%; align:left;" />
+
+		<div align="left">
+			<h:form title="Visit Details">
+				<table class="spaceUnder">
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Complaint:</h:outputLabel></td>
+						<td><h:inputTextarea pt:placeholder="complaint"
+								styleClass="form-control area" value="#{PBean.visit.complaint}"
+								id="complaint" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="complaint_message" />
+							</h:inputTextarea></td>
+
+						<td><h:message id="complaint_message" for="complaint"
+								infoClass="info" errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">HPI:</h:outputLabel></td>
+						<td><h:inputTextarea pt:placeholder="hpi"
+								styleClass="form-control area" value="#{PBean.visit.hpi}"
+								id="hpi" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="hpi_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="hpi_message" for="hpi" infoClass="info"
+								errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">PH: </h:outputLabel></td>
+						<td><h:inputTextarea pt:placeholder="ph"
+								styleClass="form-control area" value="#{PBean.visit.ph}" id="ph"
+								required="true" requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="ph_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="ph_message" for="ph" infoClass="info"
+								errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Ears: </h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="ears"
+								styleClass="form-control area" value="#{PBean.visit.ears}"
+								id="ears" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="ears_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="ears_message" for="ears" infoClass="info"
+								errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Nose: </h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="nose"
+								styleClass="form-control area" value="#{PBean.visit.nose}"
+								id="nose" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="nose_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="nose_message" for="nose" infoClass="info"
+								errorClass="error" /></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel styleClass="label">Pharynx: </h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="pharynx"
+								styleClass="form-control area" value="#{PBean.visit.pharynx}"
+								id="pharynx" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="pharynx_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="pharynx_message" for="pharynx"
+								infoClass="info" errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Larynx:</h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="larynx"
+								styleClass="form-control area" value="#{PBean.visit.larynx}"
+								id="larynx" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="larynx_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="larynx_message" for="larynx"
+								infoClass="info" errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Neck ,Otherareas:</h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="neck ,Otherareas"
+								styleClass="form-control area"
+								value="#{PBean.visit.neckOtherareas}" id="neckOtherareas"
+								required="true" requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="neckOtherareas_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="neckOtherareas_message"
+								for="neckOtherareas" infoClass="info" errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Requested: </h:outputLabel></td>
+
+
+						<td><h:inputTextarea pt:placeholder="Requested"
+								styleClass="form-control"
+								value="#{PBean.visit.investigationRequest}" id="Requested"
+								required="true" requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="Requested_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="Requested_message" for="Requested"
+								infoClass="info" errorClass="error" /></td>
+					</tr>
+					<tr>
+
+						<td><h:outputLabel styleClass="label">Treatment: </h:outputLabel>
+						</td>
+						<td><h:inputTextarea pt:placeholder="treatment"
+								styleClass="form-control" value="#{PBean.visit.treatment}"
+								id="treatment" required="true"
+								requiredMessage="#{msgBean.getRequired()}">
+								<f:ajax event="blur" render="treatment_message" />
+							</h:inputTextarea></td>
+						<td><h:message id="treatment_message" for="treatment"
+								infoClass="info" errorClass="error" /></td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+		<div>
+			<p:panel collapsed="false" toggleOrientation="horizontal">
+				<table class="table-bordered">
+					<tr>
+						<th class="label">FollowDate</th>
+						<th class="label">Staisfaction</th>
+						<th class="label">Complaint</th>
+					</tr>
+					<tbody>
+						<c:forEach items="${PBean.followups}" var="follow">
+							<tr>
+								<td><h:outputText value="${follow.followDate}" /></td>
+								<td><h:outputText value="${follow.staisfaction}" /></td>
+								<td><h:outputText value="${follow.complaint}" /></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+			</p:panel>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+

@@ -1,0 +1,79 @@
+<ui:composition template="/pages/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<h:head>
+		<meta http-equiv="Content-Type"
+			content="text/html; charset=ISO-8859-1" />
+		<title>Clinic Patients</title>
+	</h:head>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:dataTable var="patient" value="#{allPatient.allPatientmodel}"
+				paginator="true" rows="10"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15" selectionMode="single"
+				selection="#{allPatient.selectedpatient}" id="patientTable"
+				lazy="true">
+				<p:ajax event="rowSelect" listener="#{allPatient.onRowSelect}"
+					update=":form:form2:patientDetail"
+					oncomplete="PF('patientDialog').show()">
+				</p:ajax>
+
+				<p:column headerText="Name" sortBy="#{patient.name}"
+					filterBy="#{patient.name}">
+					<h:outputText value="#{patient.name}" />
+				</p:column>
+				<p:column headerText="Age" sortBy="#{patient.age}"
+					filterBy="#{patient.age}">
+					<h:outputText value="#{patient.age}" />
+				</p:column>
+				<p:column headerText="Address" sortBy="#{patient.address}"
+					filterBy="#{patient.address}">
+					<h:outputText value="#{patient.address}" />
+				</p:column>
+				<p:column headerText="PhoneNo" sortBy="#{patient.phoneNo}"
+					filterBy="#{patient.phoneNo}">
+					<h:outputText value="#{patient.phoneNo}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:dialog header="Patient Visits" widgetVar="patientDialog"
+				showEffect="fade" hideEffect="fade" resizable="false"
+				appendToBody="false">
+				<h:form id="form2">
+					<p:panel id="patientDetail" style="text-align:center;">
+						<table border="1" class="table spaceUnder">
+							<tr>
+								<td><h:outputLabel styleClass="label" value="VisitId" /></td>
+								<td><h:outputLabel styleClass="label"
+										value="Visitcomplaint" /></td>
+								<td><h:outputLabel styleClass="label" value="VisitDate" /></td>
+								<td><h:outputLabel styleClass="label" value="Action" /></td>
+							</tr>
+							<c:forEach items="${allPatient.visits}" var="visit">
+								<tr>
+									<td><h:outputText value="#{visit.id}" /></td>
+									<td><h:outputText value="#{visit.complaint}" /></td>
+									<td><h:outputText value="#{visit.visitDate}" /></td>
+									<td><h:link outcome="/pages/PatientForm.xhtml"
+											value="OpenVisit">
+											<f:param name="visitid" value="#{visit.id}" />
+										</h:link></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</p:panel>
+				</h:form>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+
+</ui:composition>

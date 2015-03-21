@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 21, 2015 7:24:01 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="com.se.mapping.Followup" table="followup" catalog="clinicdb">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="visit" class="com.se.mapping.Visit" fetch="select">
+            <column name="VisitID" not-null="true" />
+        </many-to-one>
+        <property name="followDate" type="date">
+            <column name="FollowDate" length="0" not-null="true" />
+        </property>
+        <property name="staisfaction" type="string">
+            <column name="Staisfaction" length="65535"  />
+        </property>
+        <property name="complaint" type="string">
+            <column name="Complaint" length="65535"  />
+        </property>
+        <property name="examination" type="string">
+            <column name="Examination"  />
+        </property>
+        <property name="investigation" type="string">
+            <column name="Investigation"  />
+        </property>
+        <property name="treatment" type="string">
+            <column name="Treatment"  />
+        </property>
+    </class>
+</hibernate-mapping>
